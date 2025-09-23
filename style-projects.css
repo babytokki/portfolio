@@ -1,0 +1,138 @@
+/* Reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Background */
+body {
+  background-color: #f242a9;
+  font-family: "Press Start 2P", cursive;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 40px;
+  overflow-x: hidden;
+}
+
+/* Title */
+.title {
+  font-size: 40px;
+  color: #fec3ee;
+  text-shadow: 2px 2px 0px #7725ab;
+  margin-bottom: 5px;
+  text-align: center;
+}
+
+/* Projects carousel container */
+.projects {
+  width: 100%;
+  max-width: 100vw;
+}
+
+.project-scroll {
+  display: flex;
+  gap: 40px;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+  padding: 40px 0;
+  scroll-padding-left: 20vw;
+  scroll-padding-right: 20vw;
+  scroll-behavior: smooth;
+}
+
+/* Hide scrollbar */
+.project-scroll::-webkit-scrollbar {
+  display: none;
+}
+.project-scroll {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+/* Project Card */
+.project-card {
+  background: #ffea61;
+  border-radius: 20px;
+  box-shadow: 8px 8px 0 #7725ab;
+  text-align: center;
+  flex: 0 0 auto;
+  width: 55vh;              /* Big square cards */
+  height: 55vh;
+  scroll-snap-align: center;
+  margin: 0 20px;
+  padding: 2rem;
+
+  display:  flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  transition: transform 0.4s ease, opacity 0.4s ease;
+  opacity: 0.5;
+  transform: scale(0.85);
+}
+
+.project-card.active {
+  opacity: 1;
+  transform: scale(1);
+}
+
+/* Cartridge image */
+.cartridge {
+  width: 240px;
+  margin-bottom: 20px;
+  transition: transform 0.3s ease, filter 0.3s ease;
+}
+
+.project-card.active .cartridge {
+  filter: brightness(1.2) drop-shadow(0 0 12px #7725ab);
+  transform: scale(1.08) rotate(-2deg);
+}
+
+/* Card content */
+.card-content h3 {
+  font-size: 22px;
+  color: #7725ab;
+  margin-bottom: 10px;
+}
+.card-content p {
+  font-size: 16px;
+  color: #f242a9;
+  margin-bottom: 20px;
+  line-height: 1.5;
+}
+
+/* Button */
+.project-btn {
+  display: inline-block;
+  background: #7725ab;
+  color: #ffea61;
+  text-decoration: none;
+  padding: 14px 22px;
+  border-radius: 8px;
+  font-size: 14px;
+  transition: transform 0.2s ease, background 0.2s ease;
+}
+
+.project-btn:hover {
+  transform: scale(1.05);
+  background: #5b1a83;
+}
+
+/* Back button */
+.back-btn {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+}
+.back-btn img {
+  width: 60px;
+  height: auto;
+}
+
+.spacer {
+  flex: 0 0 calc((100vw - 55vh) / 2);
+}

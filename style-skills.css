@@ -1,0 +1,127 @@
+/* Reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Background */
+body {
+  background-color: #f242a9;
+  font-family: "Press Start 2P", cursive;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 40px;
+}
+
+/* Title */
+.title {
+  font-size: 40px;
+  color: #fec3ee;
+  text-shadow: 2px 2px 0px #7725ab;
+  margin-bottom: 30px;
+}
+
+/* Container */
+.skills-container {
+  display: flex;
+  flex-direction: column; /* vertical layout */
+  gap: 20px; /* spacing between cards */
+  width: 100%;
+  max-width: 700px;
+  align-items: left; /* center cards horizontally */
+  margin: 0 auto;
+}
+
+/* Card */
+.skills-card {
+  position: relative;
+  background: #ffea61;
+  padding: 1.5rem;
+  border-radius: 12px;
+  box-shadow: 4px 4px 0 #7725ab;
+  text-align: left;
+  opacity: 0;
+  animation: fridgeOpen 0.7s ease forwards, floaty 3s ease-in-out infinite 0.7s;
+}
+
+
+.skills-card h2 {
+  margin-bottom: 0.5rem;
+  color: #7725ab;
+  font-size: 18px;
+}
+
+/* Decorative PNG badge */
+.skills-badge {
+  position: absolute;
+  top: -30px;
+  left: 10px;
+  width: 130px;
+  height: auto;
+  z-index: 5;
+  animation: fridgeOpen 0.7s ease forwards, floaty 3s ease-in-out infinite 0.7s;
+}
+
+/* Skills text */
+.skills-card p {
+  margin-bottom: 1rem;
+  line-height: 1.6;
+  color: #f242a9;
+}
+
+/* Links glow if you add any */
+.skills-card a:hover {
+  text-shadow: 0 0 5px #fec3ee, 0 0 10px #f242a9;
+}
+
+/* Back button */
+.back-btn {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  display: inline-block;
+}
+.back-btn img {
+  width: 60px;
+  height: auto;
+  animation: bounceIn 1s ease;
+}
+
+/* Animations */
+@keyframes fridgeOpen {
+  0% {
+    transform: translateX(-100%) rotateY(90deg);
+    opacity: 0;
+  }
+  100% {
+    transform: translateX(0) rotateY(0);
+    opacity: 1;
+  }
+}
+
+/* @keyframes floaty {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+} */
+
+@keyframes bounceIn {
+  0% { transform: scale(0.3); opacity: 0; }
+  50% { transform: scale(1.2); opacity: 1; }
+  100% { transform: scale(1); }
+}
+
+/* Sequence delays */
+.skills-card:nth-child(1) {
+  animation-delay: 0s, 0.7s; /* fridgeOpen starts immediately */
+}
+.skills-card:nth-child(2) {
+  animation-delay: 0.3s, 1s; /* delay slightly longer */
+}
+.skills-card:nth-child(3) {
+  animation-delay: 0.6s, 1.3s;
+}
+.skills-card:nth-child(4) {
+  animation-delay: 0.9s, 1.6s;
+}

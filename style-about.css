@@ -1,0 +1,110 @@
+/* Reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Background */
+body {
+  background-color: #f242a9;
+  font-family: "Press Start 2P", cursive;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 40px;
+}
+
+/* Title */
+.title {
+  font-size: 40px;
+  color: #fec3ee;
+  text-shadow: 2px 2px 0px #7725ab;
+  margin-bottom: 30px;
+}
+
+/* Container */
+.about-container {
+  display: flex;
+  justify-content: center;
+  max-width: 900px;
+  width: 100%;
+}
+
+/* Yellow card */
+.about-card {
+  background: #ffe281;
+  padding: 2rem;
+  border-radius: 15px;
+  box-shadow: 4px 4px 0 #7725ab;
+  text-align: left;
+  line-height: 1.6;
+  color:#7725ab
+}
+
+.about-card {
+  animation: fridgeOpen 0.7s ease forwards;
+}
+
+@keyframes fridgeOpen {
+  0% {
+    transform: translateX(-100%) rotateY(90deg);
+    opacity: 0;
+  }
+  100% {
+    transform: translateX(0) rotateY(0);
+    opacity: 1;
+  }
+}
+
+.about-card a:hover {
+  text-shadow: 0 0 5px #fec3ee, 0 0 10px #f242a9;
+}
+
+.about-card {
+  animation: floaty 3s ease-in-out infinite;
+}
+
+@keyframes floaty {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+
+
+/* Paragraph spacing */
+.about-card p {
+  margin-bottom: 1rem;
+}
+
+/* Divider */
+.divider {
+  margin: 20px 0;
+  border: 1px dashed #7725ab;
+}
+
+/* Links */
+.about-card a {
+  color: #f242a9;
+  text-decoration: none;
+  font-weight: bold;
+}
+.about-card a:hover {
+  text-decoration: underline;
+}
+
+/* Back button */
+.back-btn {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+}
+.back-btn img {
+  width: 60px;
+  height: auto;
+}
+
+@keyframes bounceIn {
+  0% { transform: scale(0.3); opacity: 0; }
+  50% { transform: scale(1.2); opacity: 1; }
+  100% { transform: scale(1); }
+}

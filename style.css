@@ -1,0 +1,117 @@
+/* Reset default margins/padding */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Background */
+body {
+  background-color: #f242a9;
+  font-family: "Press Start 2P", cursive; /* pixel font (we'll load below) */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 40px;
+}
+
+/* fe71a5 */
+
+/* Title */
+.title {
+  font-size: 50px;
+  color: #fec3ee;
+  text-shadow: 2px 2px 0px #7725ab;
+  margin-bottom: 30px;
+}
+
+/* #f6d8e7 */
+
+/* Container to overlap fridge and card */
+.fridge-card-container {
+  position: relative;
+  width: 400px; /* size shared by fridge + card */
+  height: 400px;
+}
+
+/* Fridge */
+.fridge {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  cursor: pointer;
+  transition: opacity 0.5s ease, transform 0.5s ease;
+  z-index: 2;
+}
+
+.fridge.hidden {
+  opacity: 0;
+  transform: scale(0.9);
+  pointer-events: none;
+}
+
+/* Pink square card */
+.card {
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-color: #ffe281;
+  width: 400px;
+  height: 400px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-gap: 20px;
+  padding: 20px;
+  border-radius: 15px;
+  justify-items: center;
+  align-items: center;
+  opacity: 1;
+  transform: scale(1);
+  transition: opacity 0.5s ease, transform 0.5s ease;
+  z-index: 1;
+}
+
+/* #ffe281 */
+
+.card.hidden {
+  opacity: 0;
+  transform: scale(0.9);
+  pointer-events: none;
+}
+
+/* PNG images inside card */
+.card img {
+  width: 120px;
+  height: auto;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+.card img:hover {
+  transform: scale(1.1);
+}
+
+/* Back button */
+.back-btn {
+  grid-column: span 2; /* center it across the card */
+  margin-top: -50px;
+  padding: 10px 20px;
+  font-family: "Press Start 2P", cursive;
+  font-size: 14px;
+  background-color: rgba(246, 216, 231, 0.10);
+  color: none;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.back-btn:hover {
+  background-color: none;
+  transform: scale(1.05);
+}
+
+
+

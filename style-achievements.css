@@ -1,0 +1,118 @@
+/* Reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Background */
+body {
+  background-color: #f242a9;
+  font-family: "Press Start 2P", cursive;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 40px;
+}
+
+/* Title */
+.title {
+  font-size: 40px;
+  color: #fec3ee;
+  text-shadow: 2px 2px 0px #7725ab;
+  margin-bottom: 30px;
+  text-align: center;
+}
+
+/* Trophy Grid */
+.trophy-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  width: 100%;
+  max-width: 800px;
+}
+
+/* Trophy Card */
+.trophy-card {
+  background: #ffea61;
+  border-radius: 12px;
+  box-shadow: 4px 4px 0 #7725ab;
+  padding: 1rem;
+  text-align: center;
+  animation: floaty 3s ease-in-out infinite;
+}
+
+@keyframes floaty {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+
+/* Trophy Icon */
+.trophy-icon {
+  width: 100px;
+  height: auto;
+  margin-bottom: 10px;
+}
+
+/* Text */
+.trophy-card h2 {
+  color: #7725ab;
+  font-size: 14px;
+  margin-bottom: 0.5rem;
+}
+.trophy-card p {
+  font-size: 12px;
+  color: #f242a9;
+  line-height: 1.4;
+}
+
+/* Back button */
+.back-btn {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+}
+.back-btn img {
+  width: 60px;
+  height: auto;
+}
+
+/* Button */
+.card-btn {
+  display: inline-block;
+  background: #7725ab;
+  color: #ffea61;
+  text-decoration: none;
+  padding: 8px 14px;
+  border-radius: 8px;
+  font-size: 12px;
+  margin-top: 15px;
+  transition: background 0.2s ease, transform 0.2s ease;
+}
+
+.card-btn:hover {
+  background: #7725ab;
+  transform: scale(1.05);
+}
+
+/* Links glow if you add any */
+.card-btn:hover {
+  text-shadow: 0 0 5px #f242a9, 0 0 10px #7725ab;
+}
+
+.trophy-card:nth-child(1) {
+  animation-delay: 0s;
+}
+.trophy-card:nth-child(2) {
+  animation-delay: 0.3s;
+}
+.trophy-card:nth-child(3) {
+  animation-delay: 0.6s;
+}
+.trophy-card:nth-child(4) {
+  animation-delay: 0.9s;
+}
+.trophy-card:nth-child(5) {
+  animation-delay: 1.2s;
+}
