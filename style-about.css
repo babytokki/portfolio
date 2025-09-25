@@ -27,7 +27,7 @@ body {
 .about-container {
   display: flex;
   justify-content: center;
-  max-width: 900px;
+  max-width: 700px;
   width: 100%;
 }
 
@@ -107,4 +107,37 @@ body {
   0% { transform: scale(0.3); opacity: 0; }
   50% { transform: scale(1.2); opacity: 1; }
   100% { transform: scale(1); }
+}
+
+@media (max-width: 768px) {
+  body {
+    padding: 20px;
+  }
+
+  .title {
+    font-size: 28px;
+  }
+
+  .about-card {
+    padding: 1.2rem;
+    font-size: 12px;
+  }
+
+  .back-btn img {
+    width: 45px;
+  }
+}
+
+@media (max-width: 480px) {
+  .title {
+    font-size: 22px;
+  }
+
+  .about-card {
+    padding: 1rem;
+    font-size: 11px;
+    border-radius: 20px; /* more rounded */
+    box-shadow: 6px 6px 0 #7725ab; /* stronger shadow */
+    max-width: 90%; /* shrink so it floats more */
+  }
 }
