@@ -38,9 +38,10 @@ body {
   scroll-snap-type: x mandatory;
   -webkit-overflow-scrolling: touch;
   padding: 40px 0;
-  scroll-padding-left: 20vw;
-  scroll-padding-right: 20vw;
   scroll-behavior: smooth;
+
+  /* Snap fix */
+  justify-content: flex-start;
 }
 
 /* Hide scrollbar */
@@ -59,13 +60,13 @@ body {
   box-shadow: 8px 8px 0 #7725ab;
   text-align: center;
   flex: 0 0 auto;
-  width: 55vh;              /* Big square cards */
+  width: 55vh;              /* Default size (desktop-ish) */
   height: 55vh;
   scroll-snap-align: center;
   margin: 0 20px;
   padding: 2rem;
 
-  display:  flex;
+  display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
@@ -133,6 +134,58 @@ body {
   height: auto;
 }
 
+/* Spacer to center first and last cards */
 .spacer {
-  flex: 0 0 calc((100vw - 55vh) / 2);
+  flex: 0 0 calc((100vw - 55vh) / 2); /* default desktop */
+}
+
+/* Responsive adjustments */
+
+/* Phones */
+@media (max-width: 767px) {
+  .project-card {
+    width: 80vw;
+    height: 60vw;
+  }
+  .spacer {
+    flex: 0 0 calc((100vw - 80vw) / 2);
+  }
+  .cartridge {
+    width: 160px;
+  }
+  .card-content h3 {
+    font-size: 18px;
+  }
+  .card-content p {
+    font-size: 14px;
+  }
+}
+
+/* iPad portrait */
+@media (min-width: 768px) and (max-width: 1023px) and (orientation: portrait) {
+  .project-card {
+    width: 65vw;
+    height: 55vw;
+  }
+  .spacer {
+    flex: 0 0 calc((100vw - 65vw) / 2);
+  }
+}
+
+/* iPad landscape */
+@media (min-width: 1024px) and (max-width: 1279px) and (orientation: landscape) {
+  .project-card {
+    width: 45vh;
+    height: 45vh;
+  }
+  .spacer {
+    flex: 0 0 calc((100vw - 45vh) / 2);
+  }
+}
+
+/* Large desktop */
+@media (min-width: 1280px) {
+  .spacer {
+    flex: 0 0 calc((100vw - 55vh) / 2);
+  }
 }
