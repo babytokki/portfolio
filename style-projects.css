@@ -145,7 +145,7 @@ body {
 @media (max-width: 767px) {
   .project-card {
     width: 80vw;
-    height: 60vw;
+    height: 80vw;
   }
   .spacer {
     flex: 0 0 calc((100vw - 80vw) / 2);
