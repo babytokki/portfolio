@@ -4,18 +4,19 @@
 const fridge = document.getElementById("fridge");
 const card = document.getElementById("card");
 const backBtn = document.getElementById("backBtn");
+const fridgeText = document.getElementById("fridge-text");
 
-if (fridge && card && backBtn) {
+if (fridge && card && backBtn && fridgeText) {
   fridge.addEventListener("click", () => {
     fridge.classList.add("hidden");
+    fridgeText.classList.add("hidden"); // hide text smoothly
     card.classList.remove("hidden");
-    backBtn.classList.add("hidden");
   });
 
   backBtn.addEventListener("click", () => {
-    card.classList.add("hidden");
     fridge.classList.remove("hidden");
-    backBtn.classList.add("hidden");
+    fridgeText.classList.remove("hidden"); // show text again
+    card.classList.add("hidden");
   });
 }
 
@@ -24,22 +25,15 @@ if (fridge && card && backBtn) {
 // =======================
 document.addEventListener("DOMContentLoaded", () => {
   const container = document.querySelector(".project-scroll");
-  if (!container) {
-    console.warn("Carousel: .project-scroll not found. Check your HTML class name.");
-    return;
-  }
+  const scrollHint = document.getElementById("scroll-hint"); // 👈 scroll hint element
+  if (!container) return; // exit if not on Projects page
 
   const cards = Array.from(container.querySelectorAll(".project-card"));
-  if (!cards.length) {
-    console.warn("Carousel: no .project-card elements found inside .project-scroll.");
-    return;
-  }
-
-  console.log(`Carousel: found ${cards.length} cards — script active.`);
+  if (!cards.length) return;
 
   let ticking = false;
 
-  // Helper: find which card is closest to the container center and update .active
+  // Find which card is closest to center
   function updateActive() {
     ticking = false;
     const containerRect = container.getBoundingClientRect();
@@ -62,7 +56,7 @@ document.addEventListener("DOMContentLoaded", () => {
     if (closest) closest.classList.add("active");
   }
 
-  // Mouse wheel → horizontal scroll
+  // Allow vertical scroll → horizontal scroll
   container.addEventListener(
     "wheel",
     (e) => {
@@ -74,19 +68,22 @@ document.addEventListener("DOMContentLoaded", () => {
     { passive: false }
   );
 
-  // Throttled scroll handler using rAF
+  // Throttle scroll updates with requestAnimationFrame
   container.addEventListener(
     "scroll",
     () => {
       if (!ticking) {
-        window.requestAnimationFrame(updateActive);
+        window.requestAnimationFrame(() => {
+          updateActive();
+          checkHint(); // 👈 also check scroll hint
+        });
         ticking = true;
       }
     },
     { passive: true }
   );
 
-  // Keyboard navigation: left / right arrows
+  // Keyboard navigation
   function scrollToCard(index) {
     const card = cards[index];
     if (!card) return;
@@ -95,36 +92,85 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   document.addEventListener("keydown", (e) => {
-    if (e.key === "ArrowRight" || e.key === "ArrowLeft") {
+    const activeIndex = cards.findIndex((c) => c.classList.contains("active"));
+    if (e.key === "ArrowRight") {
       e.preventDefault();
-      const activeIndex = cards.findIndex((c) => c.classList.contains("active"));
-      let nextIndex = activeIndex;
-      if (e.key === "ArrowRight")
-        nextIndex = Math.min(cards.length - 1, activeIndex === -1 ? 0 : activeIndex + 1);
-      else nextIndex = Math.max(0, activeIndex === -1 ? 0 : activeIndex - 1);
-      scrollToCard(nextIndex);
+      scrollToCard(Math.min(cards.length - 1, activeIndex + 1));
+    } else if (e.key === "ArrowLeft") {
+      e.preventDefault();
+      scrollToCard(Math.max(0, activeIndex - 1));
     }
   });
 
-  // Update on resize (layout changes)
+  // Swipe navigation (for touch devices)
+  let startX = 0;
+  let isSwiping = false;
+
+  container.addEventListener("touchstart", (e) => {
+    startX = e.touches[0].clientX;
+    isSwiping = true;
+  });
+
+  container.addEventListener("touchmove", (e) => {
+    if (!isSwiping) return;
+    const deltaX = e.touches[0].clientX - startX;
+
+    if (Math.abs(deltaX) > 50) {
+      const activeIndex = cards.findIndex((c) => c.classList.contains("active"));
+      if (deltaX < 0) {
+        scrollToCard(Math.min(cards.length - 1, activeIndex + 1));
+      } else {
+        scrollToCard(Math.max(0, activeIndex - 1));
+      }
+      isSwiping = false;
+    }
+  });
+
+  container.addEventListener("touchend", () => {
+    isSwiping = false;
+  });
+
+  // =======================
+  // Scroll Hint logic
+  // =======================
+  function checkHint() {
+    if (!scrollHint || !cards[1]) return;
+    const secondCard = cards[1];
+    const rect = secondCard.getBoundingClientRect();
+    const containerRect = container.getBoundingClientRect();
+
+    // If second card passes halfway → fade out
+    if (rect.left < containerRect.left + containerRect.width / 2) {
+      scrollHint.classList.add("fade-out");
+    } else {
+      scrollHint.classList.remove("fade-out");
+    }
+  }
+
+  // Recalculate on resize
   window.addEventListener("resize", () => {
     clearTimeout(window.__carouselResizeTimer__);
-    window.__carouselResizeTimer__ = setTimeout(updateActive, 120);
+    window.__carouselResizeTimer__ = setTimeout(() => {
+      updateActive();
+      checkHint();
+    }, 120);
   });
 
-  // On load → center the first active card
+  // On load: center the first card
   window.addEventListener("load", () => {
     updateActive();
-    const activeCard = cards.find((c) => c.classList.contains("active")) || cards[0];
-    if (activeCard) {
-      const offset =
-        activeCard.offsetLeft - (container.clientWidth - activeCard.clientWidth) / 2;
+    const firstCard = cards[0];
+    if (firstCard) {
+      const offset = firstCard.offsetLeft - (container.clientWidth - firstCard.clientWidth) / 2;
       container.scrollTo({ left: offset, behavior: "instant" });
     }
-    setTimeout(updateActive, 300); // re-check after layout settles
+    setTimeout(() => {
+      updateActive();
+      checkHint();
+    }, 300);
   });
 
-  // initial run
+  // Initial run
   updateActive();
+  checkHint();
 });
-

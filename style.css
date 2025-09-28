@@ -8,14 +8,12 @@
 /* Background */
 body {
   background-color: #f242a9;
-  font-family: "Press Start 2P", cursive; /* pixel font (we'll load below) */
+  font-family: "Press Start 2P", cursive; /* pixel font */
   display: flex;
   flex-direction: column;
   align-items: center;
   padding: 40px;
 }
-
-/* fe71a5 */
 
 /* Title */
 .title {
@@ -24,8 +22,6 @@ body {
   text-shadow: 2px 2px 0px #7725ab;
   margin-bottom: 30px;
 }
-
-/* #f6d8e7 */
 
 /* Container to overlap fridge and card */
 .fridge-card-container {
@@ -52,6 +48,31 @@ body {
   pointer-events: none;
 }
 
+/* Fridge text under the fridge */
+.fridge-text {
+  position: absolute;
+  bottom: -30px; /* places text just under fridge */
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 14px;
+  color: #ffffff;
+  text-shadow: 2px 2px 0px #7725ab;
+  animation: floaty 1.5s infinite ease-in-out;
+  opacity: 1;
+  transition: opacity 0.4s ease;
+}
+
+.fridge-text.hidden {
+  opacity: 0;
+  pointer-events: none;
+}
+
+@keyframes floaty {
+  0% { transform: translateX(-50%) translateY(0); }
+  50% { transform: translateX(-50%) translateY(-5px); }
+  100% { transform: translateX(-50%) translateY(0); }
+}
+
 /* Pink square card */
 .card {
   position: absolute;
@@ -72,8 +93,6 @@ body {
   transition: opacity 0.5s ease, transform 0.5s ease;
   z-index: 1;
 }
-
-/* #ffe281 */
 
 .card.hidden {
   opacity: 0;
@@ -101,7 +120,6 @@ body {
   font-family: "Press Start 2P", cursive;
   font-size: 14px;
   background-color: rgba(246, 216, 231, 0.10);
-  color: none;
   border: none;
   border-radius: 10px;
   cursor: pointer;
@@ -109,9 +127,6 @@ body {
 }
 
 .back-btn:hover {
-  background-color: none;
   transform: scale(1.05);
 }
-
-
 

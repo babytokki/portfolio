@@ -25,6 +25,32 @@ body {
   text-align: center;
 }
 
+#scroll-hint {
+  position: flex; /* adjust based on your layout */
+  color:#ffffff;
+  text-shadow: 2px 2px 0px #7725ab;
+  bottom: 10px;
+  right: 20px;
+  font-size: 14px;
+  opacity: 1;
+  animation: floaty 3s ease-in-out infinite;
+  transition: opacity 0.6s ease;
+  pointer-events: none; /* makes sure it doesn’t block clicks */
+}
+
+#scroll-hint.fade-out {
+  opacity: 0;
+}
+
+@keyframes floaty {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-8px);
+  }
+}
+
 /* Projects carousel container */
 .projects {
   width: 100%;
@@ -145,7 +171,7 @@ body {
 @media (max-width: 767px) {
   .project-card {
     width: 80vw;
-    height: 80vw;
+    height: 90vw;
   }
   .spacer {
     flex: 0 0 calc((100vw - 80vw) / 2);
@@ -165,7 +191,7 @@ body {
 @media (min-width: 768px) and (max-width: 1023px) and (orientation: portrait) {
   .project-card {
     width: 65vw;
-    height: 55vw;
+    height: 65vw;
   }
   .spacer {
     flex: 0 0 calc((100vw - 65vw) / 2);
@@ -176,7 +202,7 @@ body {
 @media (min-width: 1024px) and (max-width: 1279px) and (orientation: landscape) {
   .project-card {
     width: 45vh;
-    height: 45vh;
+    height: 65vh;
   }
   .spacer {
     flex: 0 0 calc((100vw - 45vh) / 2);
